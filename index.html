@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Pontos - Farmácia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #2d89ef;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora de Pontos</h2>
+    
+    <input type="number" id="preco" placeholder="Preço do produto (R$)">
+    
+    <select id="percentual">
+      <option value="0.05">Super conservador (5%)</option>
+      <option value="0.06" selected>Conservador (6%)</option>
+      <option value="0.08">Moderado (8%)</option>
+    </select>
+
+    <button onclick="calcular()">Calcular Pontos</button>
+
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      const preco = parseFloat(document.getElementById('preco').value);
+      const percentual = parseFloat(document.getElementById('percentual').value);
+
+      if (!preco || preco <= 0) {
+        document.getElementById('resultado').innerText = 'Digite um valor válido';
+        return;
+      }
+
+      // Fórmula: (Preço / percentual) / 5
+      const pontos = Math.round((preco / percentual) / 5);
+
+      document.getElementById('resultado').innerText = `Pontos necessários: ${pontos}`;
+    }
+  </script>
+</body>
+</html>
